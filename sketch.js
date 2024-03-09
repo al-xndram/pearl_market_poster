@@ -1,19 +1,19 @@
 let imgs;
+// image names have to start at 0
+// so for eg. set_0.png, set_1.png, set_2.png, set_3.png, etc
+//
+// whatever is the last img, rn it's set_23.png
+// then the num below will be 22
+let image_count = 22;
 
-let index_1 = 0;
-let index_2 = 1;
-let index_3 = 2;
-
-let offset1 = { x: 100, y: -150 };
-let offset2 = { x: 0, y: 0 };
-let offset3 = { x: 0, y: 0 };
+// this is the file name if you wanna change the type structure
+let type_struct_img = "t4.jpeg";
 
 let offsets = [];
 
 let width = 1100 * 2;
 let height = 1700 * 2;
 
-let t = 4;
 let template, off_1_x, off_1_y, off_2_x, off_2_y, off_3_x, off_3_y, n;
 
 let o = 255;
@@ -27,8 +27,8 @@ if (localStorage.getItem("n")) {
 }
 
 function preload() {
-  template = loadImage("t" + t + ".jpeg");
-  imgs = Array(22)
+  template = loadImage("./" + type_struct_img);
+  imgs = Array(image_count)
     .fill(0)
     .map((_, i) => loadImage(`./pngs/set_${i + 1}.png`));
 }
