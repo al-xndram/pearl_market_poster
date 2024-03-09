@@ -13,7 +13,7 @@ let offsets = [];
 let width = 1100 * 2;
 let height = 1700 * 2;
 
-let t = 2;
+let t = 4;
 let template, off_1_x, off_1_y, off_2_x, off_2_y, off_3_x, off_3_y, n;
 
 let o = 255;
@@ -27,7 +27,7 @@ if (localStorage.getItem("n")) {
 }
 
 function preload() {
-  template = loadImage("t" + t + ".jpg");
+  template = loadImage("t" + t + ".jpeg");
   imgs = Array(22)
     .fill(0)
     .map((_, i) => loadImage(`./pngs/set_${i + 1}.png`));
@@ -36,6 +36,7 @@ function preload() {
 let index_next;
 let index_prev;
 let mode = "view";
+let type_struct = true;
 
 const mode_view = () => (mode = "view");
 const mode_edit = () => (mode = "edit");
@@ -96,6 +97,7 @@ function draw_images() {
   if (mode === "edit") {
     noFill();
     stroke(255, 0, 0);
+    strokeWeight(5);
     let cur_img = imgs[offsets[cur_index].i];
 
     rect(
@@ -119,7 +121,9 @@ function draw() {
 
   blendMode(MULTIPLY);
 
-  // image(template, 0, 0, width, height);
+  if (type_struct) {
+    image(template, 0, 0, width, height);
+  }
 
   // blendMode(NORMAL);
 
@@ -129,14 +133,17 @@ function draw() {
 }
 
 function keyPressed() {
+  // s
   if (keyCode === 83) {
     saveImage();
   }
 
+  // e
   if (keyCode === 69) {
     mode_edit();
   }
 
+  // v
   if (keyCode === 86) {
     mode_view();
   }
@@ -173,6 +180,7 @@ function keyPressed() {
     shuffl();
   }
 
+  // r
   if (keyCode === 82) {
     offsets[cur_index].x = Math.random() * width;
     offsets[cur_index].y = Math.random() * height;
@@ -185,6 +193,11 @@ function keyPressed() {
   // b
   if (keyCode === 66) {
     prev_index();
+  }
+
+  // t
+  if (keyCode === 84) {
+    type_struct = !type_struct;
   }
 }
 
