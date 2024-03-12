@@ -4,10 +4,10 @@ let imgs;
 //
 // whatever is the last img, rn it's set_23.png
 // then the num below will be 22
-let image_count = 22;
+let image_count = 28;
 
 // this is the file name if you wanna change the type structure
-let type_struct_img = "t4.jpeg";
+let type_struct_img = "test.jpg";
 
 let offsets = [];
 
